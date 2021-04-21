@@ -13,7 +13,7 @@
         <Insets bottom="10" left="5" right="5" top="5" />
     </padding>
     <children>
-                <Label alignment="CENTER" blendMode="SCREEN" prefHeight="30.0" prefWidth="300.0" styleClass="my-lable-class" text="New user registration" />
+                <Label fx:id="labelReg" alignment="CENTER" blendMode="SCREEN" prefHeight="30.0" prefWidth="300.0" styleClass="my-lable-class" text="New user registration" />
                 <TextField  fx:id="nick" focusTraversable="false" onMouseClicked="#clearText"  promptText=" Nick name" styleClass="my-btn-class" >
                     <effect>
                         <Lighting>

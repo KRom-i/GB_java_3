@@ -21,19 +21,17 @@ import java.util.ResourceBundle;
 
 
 public class Controller implements Initializable {
+
     @FXML
     private TextField info;
-
     @FXML
     private HBox dnPanel;
     @FXML
     private VBox upPanel;
-
     @FXML
     private TextField log;
     @FXML
     private PasswordField pass;
-
     @FXML
     private TextArea chatArea;
     @FXML
@@ -50,8 +48,8 @@ public class Controller implements Initializable {
     DataInputStream in;
     DataOutputStream out;
 
-    public static final String ADDRESS = "192.168.1.35";
-    public static final int PORT = 8004;
+    public static final String ADDRESS = "localhost";
+    public static final int PORT = 6000;
 
     public void setAuth(boolean auth){
         this.isAuth = auth;
@@ -73,6 +71,7 @@ public class Controller implements Initializable {
 
 
     public void chatExit(ActionEvent actionEvent) {
+
         if (socket != null && !socket.isClosed()) {
             try {
                 out.writeUTF("/end");
@@ -91,6 +90,7 @@ public class Controller implements Initializable {
 
 
     public void listCon() {
+
         if (listContacts.getPrefWidth() == 0 && isAuth){
             try {
                 out.writeUTF("/clientlist");
@@ -118,7 +118,6 @@ public class Controller implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
 
     }
 
@@ -204,9 +203,11 @@ public class Controller implements Initializable {
 
 
     public void singIn() {
+
         if (socket == null || socket.isClosed()){
             connect();
         }
+        
         try {
             if (log.getText().length() > 0 && pass.getText().length() > 0){
                 out.writeUTF("/auth " + log.getText() + " " + pass.getText());
@@ -235,6 +236,8 @@ public class Controller implements Initializable {
     public void selectClient(MouseEvent mouseEvent) {
         if (mouseEvent.getClickCount() == 2) {
             PrivateStage ps = new PrivateStage(listContacts.getSelectionModel().getSelectedItem(), out);
+            ps.setX(Main.primaryStage.getX() + 10);
+            ps.setY(Main.primaryStage.getY() + 200);
             ps.show();
         }
     }
@@ -246,8 +249,12 @@ public class Controller implements Initializable {
     }
 
     public void singUp(ActionEvent actionEvent) {
+
         RegistrationStage registrationStage = new RegistrationStage();
+        registrationStage.setX(Main.primaryStage.getX() + 50);
+        registrationStage.setY(Main.primaryStage.getY() + 50);
         registrationStage.show();
+
     }
 
 }

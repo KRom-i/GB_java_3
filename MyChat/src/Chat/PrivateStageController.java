@@ -13,12 +13,11 @@ import java.io.IOException;
 public class PrivateStageController {
 
     @FXML
+    private Button btnCancel;
+    @FXML
     private TextField textField;
     @FXML
     private Button btn;
-
-
-
 
     public void sendPrivate(ActionEvent actionEvent) {
         String outPrivateMSG = textField.getText();
@@ -31,5 +30,11 @@ public class PrivateStageController {
             }
         Stage stage = (Stage) btn.getScene().getWindow();
         stage.close();
+    }
+
+    public void privateCancel(ActionEvent actionEvent) {
+            Stage stage = (Stage) btnCancel.getScene().getWindow();
+            stage.close();
+
     }
 }
