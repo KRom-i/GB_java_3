@@ -20,30 +20,30 @@ public class AuthSetvice {
     }
 
 
-////      Добавление нового пользователя в БД.
-//    public static boolean addUser(String log, String pass, String nick){
-//
-//        PreparedStatement statement = null;
-//
-//        try {
-//
-//            String query = "INSERT INTO users (login, password, nickname) VALUES (?, ?, ?);";
-//            statement = connection.prepareStatement(query);
-//
-//            statement.setString(1, log);
-//            statement.setInt(2, pass.hashCode());
-//            statement.setString(3, nick);
-//            statement.executeUpdate();
-//
-//            return true;
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        } finally {
-//            statementClose(statement);
-//        }
-//        return false;
-//    }
-//
+//      Добавление нового пользователя в БД.
+    public static boolean addUser(String log, String pass, String nick){
+
+        PreparedStatement statement = null;
+
+        try {
+
+            String query = "INSERT INTO users (login, password, nickname) VALUES (?, ?, ?);";
+            statement = connection.prepareStatement(query);
+
+            statement.setString(1, log);
+            statement.setInt(2, pass.hashCode());
+            statement.setString(3, nick);
+            statement.executeUpdate();
+
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            statementClose(statement);
+        }
+        return false;
+    }
+
 ////    Обновление blacklist.
 //    public static List<String> blacklistIni(String nickname){
 //
