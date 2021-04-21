@@ -21,9 +21,7 @@ public class RegistrationStage extends Stage {
     public RegistrationStage() {
         try {
         Parent root = null;
-
-            root = FXMLLoader.load(getClass().getResource("Registration.fxml"));
-
+        root = FXMLLoader.load(getClass().getResource("Registration.fxml"));
         initStyle(StageStyle.TRANSPARENT);
         Scene s = new Scene(root);
         s.setOnMousePressed(new EventHandler<MouseEvent>() {

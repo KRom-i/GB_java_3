@@ -9,8 +9,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-
-import java.awt.*;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
@@ -22,9 +20,12 @@ public class PrivateStage extends Stage {
     String nickTo;
     DataOutputStream out;
 
+
     public PrivateStage(String nickTo, DataOutputStream out) {
+
         this.nickTo = nickTo;
         this.out = out;
+
         try {
             Parent root = FXMLLoader.load(getClass().getResource("privateStage.fxml"));
             initStyle(StageStyle.TRANSPARENT);
@@ -51,5 +52,6 @@ public class PrivateStage extends Stage {
             e.printStackTrace();
         }
     }
+
 
 }
