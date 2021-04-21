@@ -1,3 +1,4 @@
+/*
 package Server;
 
 import java.sql.*;
@@ -165,3 +166,4 @@ public class AuthSetvice {
         }
     }
 }
+*/
