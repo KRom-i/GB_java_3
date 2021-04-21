@@ -20,60 +20,60 @@ public class AuthSetvice {
     }
 
 
-//      Добавление нового пользователя в БД.
-    public static boolean addUser(String log, String pass, String nick){
-
-        PreparedStatement statement = null;
-
-        try {
-
-            String query = "INSERT INTO users (login, password, nickname) VALUES (?, ?, ?);";
-            statement = connection.prepareStatement(query);
-
-            statement.setString(1, log);
-            statement.setInt(2, pass.hashCode());
-            statement.setString(3, nick);
-            statement.executeUpdate();
-
-            return true;
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            statementClose(statement);
-        }
-        return false;
-    }
-
-//    Обновление blacklist.
-    public static List<String> blacklistIni(String nickname){
-
-        List<String> historyList = new ArrayList<>();
-        PreparedStatement statement = null;
-        ResultSet rs = null;
-
-        try {
-
-            statement = connection.prepareStatement(
-                    "SELECT * FROM blacklist WHERE nickname = ?;"
-            );
-
-            statement.setString(1,nickname);
-
-            rs = statement.executeQuery();
-
-            while (rs.next()){
-                historyList.add(rs.getString("userBlackList"));
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            statementClose(statement);
-            resultSetClose(rs);
-        }
-
-        return historyList;
-    }
+////      Добавление нового пользователя в БД.
+//    public static boolean addUser(String log, String pass, String nick){
+//
+//        PreparedStatement statement = null;
+//
+//        try {
+//
+//            String query = "INSERT INTO users (login, password, nickname) VALUES (?, ?, ?);";
+//            statement = connection.prepareStatement(query);
+//
+//            statement.setString(1, log);
+//            statement.setInt(2, pass.hashCode());
+//            statement.setString(3, nick);
+//            statement.executeUpdate();
+//
+//            return true;
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        } finally {
+//            statementClose(statement);
+//        }
+//        return false;
+//    }
+//
+////    Обновление blacklist.
+//    public static List<String> blacklistIni(String nickname){
+//
+//        List<String> historyList = new ArrayList<>();
+//        PreparedStatement statement = null;
+//        ResultSet rs = null;
+//
+//        try {
+//
+//            statement = connection.prepareStatement(
+//                    "SELECT * FROM blacklist WHERE nickname = ?;"
+//            );
+//
+//            statement.setString(1,nickname);
+//
+//            rs = statement.executeQuery();
+//
+//            while (rs.next()){
+//                historyList.add(rs.getString("userBlackList"));
+//            }
+//
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        } finally {
+//            statementClose(statement);
+//            resultSetClose(rs);
+//        }
+//
+//        return historyList;
+//    }
 
 
 //    Добавление пользователя в blacklist БД.
