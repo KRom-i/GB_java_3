@@ -44,36 +44,36 @@ public class AuthSetvice {
         return false;
     }
 
-////    Обновление blacklist.
-//    public static List<String> blacklistIni(String nickname){
-//
-//        List<String> historyList = new ArrayList<>();
-//        PreparedStatement statement = null;
-//        ResultSet rs = null;
-//
-//        try {
-//
-//            statement = connection.prepareStatement(
-//                    "SELECT * FROM blacklist WHERE nickname = ?;"
-//            );
-//
-//            statement.setString(1,nickname);
-//
-//            rs = statement.executeQuery();
-//
-//            while (rs.next()){
-//                historyList.add(rs.getString("userBlackList"));
-//            }
-//
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        } finally {
-//            statementClose(statement);
-//            resultSetClose(rs);
-//        }
-//
-//        return historyList;
-//    }
+//    Обновление blacklist.
+    public static List<String> blacklistIni(String nickname){
+
+        List<String> historyList = new ArrayList<>();
+        PreparedStatement statement = null;
+        ResultSet rs = null;
+
+        try {
+
+            statement = connection.prepareStatement(
+                    "SELECT * FROM blacklist WHERE nickname = ?;"
+            );
+
+            statement.setString(1,nickname);
+
+            rs = statement.executeQuery();
+
+            while (rs.next()){
+                historyList.add(rs.getString("userBlackList"));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            statementClose(statement);
+            resultSetClose(rs);
+        }
+
+        return historyList;
+    }
 
 
 //    Добавление пользователя в blacklist БД.
