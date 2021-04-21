@@ -28,13 +28,14 @@
             <effect>
                <Lighting>
                   <bumpInput>
-                     <Shadow />
+                     <Shadow/>
                   </bumpInput>
                   <light>
-                     <Light.Distant />
+                     <Light.Distant/>
                   </light>
                </Lighting>
-            </effect></TextField>
+            </effect>
+         </TextField>
       </VBox>
       <VBox fx:id="upPanel" alignment="TOP_RIGHT" spacing="5" styleClass="my-Box1-class" stylesheets="@Styles/style.css">
          <padding>
@@ -48,7 +49,7 @@
                         <Shadow />
                      </bumpInput>
                      <light>
-                        <Light.Distant />
+                        <Light.Distant/>
                      </light>
                   </Lighting>
                </effect></TextField>
@@ -56,20 +57,20 @@
                <effect>
                   <Lighting>
                      <bumpInput>
-                        <Shadow />
+                        <Shadow/>
                      </bumpInput>
                      <light>
-                        <Light.Distant />
+                        <Light.Distant/>
                      </light>
                   </Lighting>
                </effect></PasswordField>
             <Button blendMode="SRC_ATOP" mnemonicParsing="false" onAction="#singIn" prefHeight="30.0" prefWidth="100.0" styleClass="my-btn-class" text="SING IN">
                <effect>
-                  <SepiaTone />
+                  <SepiaTone/>
                </effect></Button>
             <Button blendMode="SRC_ATOP"  mnemonicParsing="false" onAction="#singUp" prefHeight="30.0" prefWidth="100.0" styleClass="my-btn-class" text="SING UP">
                <effect>
-                  <SepiaTone />
+                  <SepiaTone/>
                </effect></Button>
          </children>
          <effect>
@@ -83,10 +84,10 @@
                <effect>
                   <Lighting diffuseConstant="1.17" specularExponent="31.21">
                      <bumpInput>
-                        <Shadow />
+                        <Shadow/>
                      </bumpInput>
                      <light>
-                        <Light.Distant />
+                        <Light.Distant/>
                      </light>
                   </Lighting>
                </effect></TextArea>
@@ -94,10 +95,10 @@
                <effect>
                   <Lighting diffuseConstant="1.17" specularExponent="31.21">
                      <bumpInput>
-                        <Shadow />
+                        <Shadow/>
                      </bumpInput>
                      <light>
-                        <Light.Distant />
+                        <Light.Distant/>
                      </light>
                   </Lighting>
                </effect>
@@ -120,13 +121,13 @@
                         <Shadow />
                      </bumpInput>
                      <light>
-                        <Light.Distant />
+                        <Light.Distant/>
                      </light>
                   </Lighting>
                </effect></TextField>
             <Button mnemonicParsing="false" onAction="#sendMsg" prefHeight="50.0" prefWidth="90.0" styleClass="my-btn-class" text="SEND">
                <effect>
-                  <SepiaTone />
+                  <SepiaTone/>
                </effect></Button>
          </children>
          <effect>
@@ -135,12 +136,12 @@
                   <Shadow />
                </bumpInput>
                <light>
-                  <Light.Distant />
+                  <Light.Distant/>
                </light>
             </Lighting>
          </effect></HBox>
    </children>
    <effect>
-      <InnerShadow />
+      <InnerShadow/>
    </effect>
 </VBox>

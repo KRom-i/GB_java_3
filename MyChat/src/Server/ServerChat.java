@@ -16,7 +16,7 @@ public class ServerChat {
 
         try {
             AuthSetvice.connect();
-            serverSocket = new ServerSocket(8004);
+            serverSocket = new ServerSocket(6010);
             System.out.println("Server start");
 
             while (true){
@@ -61,10 +61,12 @@ public class ServerChat {
         broadcastContactsList();
     }
 
-
+    //    Метод осуществляет отправку сообщения всем пользователям.
     public void broadcastMSG(ClientHandler from, String str){
 
         for (ClientHandler c: users) {
+
+//            Проверка на наличие nickname (получателя/отправителя) в blacklist (отправителя/получателя).
             if (!c.checkBlackList(from.getNickname())
                     && !from.checkBlackList(c.getNickname())){
                 AuthSetvice.historyMsgAdd(c.getNickname(), str);
@@ -73,11 +75,14 @@ public class ServerChat {
         }
     }
 
-
+//      Отправка приватных сообщений.
     public void privateMSG(String nickOut, String nickIn, String str){
 
         for (ClientHandler c: users) {
+//            Сообщение отправляется только двум пользователямю.
             if (c.getNickname().equals(nickOut) || c.getNickname().equals(nickIn)) {
+
+//                Проверка наличия nickname отправителя в blacklist получателя.
                 if (!c.checkBlackList(nickOut)){
                     AuthSetvice.historyMsgAdd(c.getNickname(), nickOut + ": [send for " + nickIn + "] msg: " + str);
                     c.sendMSG(nickOut + ": [send for " + nickIn + "] msg: " + str);
@@ -96,14 +101,18 @@ public class ServerChat {
         return false;
     }
 
+
+//    Отправка списка онлайн пользователей.
     public void broadcastContactsList() {
 
         StringBuilder strSB = new StringBuilder();
         strSB.append("/clientlist ");
+
         for (ClientHandler c: users
         ) {
             strSB.append(c.getNickname() + " ");
         }
+
         String outCmd = strSB.toString();
 
         for (ClientHandler c: users) {
