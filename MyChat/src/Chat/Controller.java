@@ -49,7 +49,7 @@ public class Controller implements Initializable {
     DataOutputStream out;
 
     public static final String ADDRESS = "localhost";
-    public static final int PORT = 6010;
+    public static final int PORT = 6000;
 
     public void setAuth(boolean auth){
         this.isAuth = auth;
@@ -203,9 +203,11 @@ public class Controller implements Initializable {
 
 
     public void singIn() {
+
         if (socket == null || socket.isClosed()){
             connect();
         }
+        
         try {
             if (log.getText().length() > 0 && pass.getText().length() > 0){
                 out.writeUTF("/auth " + log.getText() + " " + pass.getText());

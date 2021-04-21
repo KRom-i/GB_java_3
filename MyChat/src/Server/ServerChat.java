@@ -16,7 +16,7 @@ public class ServerChat {
 
         try {
             AuthSetvice.connect();
-            serverSocket = new ServerSocket(6010);
+            serverSocket = new ServerSocket(6000);
             System.out.println("Server start");
 
             while (true){
