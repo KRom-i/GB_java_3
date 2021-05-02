@@ -1,6 +1,7 @@
-package Lesson_5_Threads.Home_Work.RaceGB;
+package Lesson_5_Threads.Home_Work.MyRace;
 
 public abstract class Stage {
+
     protected int length;
     protected String description;
 
