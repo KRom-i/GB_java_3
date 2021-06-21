@@ -1,9 +1,6 @@
 package Lesson_01.Server;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
+import java.io.*;
 import java.net.Socket;
 
 public class ClientHandler implements Runnable{
@@ -47,21 +44,65 @@ public class ClientHandler implements Runnable{
                             fos.write(buffer, 0, read);
                         }
                         fos.close();
+
                         out.writeUTF("OK");
+                        System.out.printf("Client [%s] upload file [%s]\n", socket.getInetAddress(), file.getName());
 
                     } catch (Exception e){
-                        out.writeUTF("FATAL ERROR");
+                        out.writeUTF("FATAL ERROR !");
                         e.printStackTrace();
                     }
-                }
 
-                if ("exit".equals(command)){
+                } else if ("download".equals(command)){
+
+                    try {
+
+                        File file = new File("server" + File.separator + in.readUTF());
+
+                        if (file.exists()){
+
+                            long fileLength = file.length();
+                            FileInputStream fis = new FileInputStream(file);
+
+                            out.writeUTF("download");
+                            out.writeUTF(file.getName());
+                            out.writeLong(fileLength);
+
+
+                            int read = 0;
+                            byte[] buffer = new byte[8 * 1024];
+
+                            while ((read = fis.read(buffer)) != -1){
+                                out.write(buffer, 0, read);
+                            }
+
+                            out.flush();
+
+                            String status = in.readUTF();
+
+                            if (status.equals("OK")){
+                                System.out.printf("Client [%s] downloaded the file [%s]\n", socket.getInetAddress(), file.getName());
+                            }
+
+                        } else {
+                            out.writeUTF("File not found");
+                        }
+
+                    } catch (Exception e){
+                        out.writeUTF("FATAL ERROR !");
+                        e.printStackTrace();
+                    }
+
+                } else if ("exit".equals(command)){
+
                     System.out.printf("Client %s disconnected\n", socket.getInetAddress());
                     break;
+
+                } else {
+                    System.out.println(command);
+                    out.writeUTF(command);
                 }
 
-                System.out.println(command);
-                out.writeUTF(command);
 
             }
 

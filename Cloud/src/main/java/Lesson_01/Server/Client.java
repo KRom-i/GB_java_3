@@ -26,8 +26,21 @@ public class Client extends JFrame {
         JTextField jTextField = new JTextField();
 
         jButtonSend.addActionListener(a -> {
-            String message = jTextField.getText();
-            sendFile(message);
+
+            String[] cmd = jTextField.getText().split(" ");
+
+            if (cmd[0].equals("exit")){
+                sendMessage("exit");
+                System.exit(0);
+            } else if (cmd[0].equals("upload")){
+                sendFile(cmd[1]);
+            } else if (cmd[0].equals("download")){
+                getFile(cmd[1]);
+            } else {
+                System.out.printf("[%s] not a command\n", cmd);
+                jTextField.setText("");
+            }
+
         });
 
         jPanel.add(jTextField);
@@ -36,12 +49,54 @@ public class Client extends JFrame {
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing (WindowEvent e) {
-                super.windowClosing(e);
                 sendMessage("exit");
+                super.windowClosing(e);
+                System.exit(0);
             }
         });
         add(jPanel);
         setVisible(true);
+    }
+
+    private void getFile (String fileName) {
+        try {
+            out.writeUTF("download");
+            out.writeUTF(fileName);
+
+            String exists = in.readUTF();
+
+            if (exists.equals("File not found")){
+                throw new FileNotFoundException();
+            }
+
+            if (exists.equals("download")){
+                File file = new File("client" + File.separator + in.readUTF());
+
+                if (!file.exists()){
+                    file.createNewFile();
+                }
+
+                FileOutputStream fos = new FileOutputStream(file);
+
+                long size = in.readLong();
+
+                byte[] buffer = new byte[8 * 1024];
+
+                for(int i = 0; i < (size + (buffer.length - 1)) / (buffer.length); i++) {
+                    int read = in.read(buffer);
+                    fos.write(buffer, 0, read);
+                }
+
+                fos.close();
+
+                out.writeUTF("OK");
+                System.out.println("File downloaded");
+
+            }
+
+        } catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     private void sendFile (String fileName) {
