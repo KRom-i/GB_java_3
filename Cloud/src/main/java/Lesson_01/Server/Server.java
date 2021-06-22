@@ -10,7 +10,7 @@ public class Server {
 
         ExecutorService service = Executors.newFixedThreadPool(4);
 
-        try (ServerSocket server = new ServerSocket(5678)){
+        try (ServerSocket server = new ServerSocket(5000)){
             System.out.println("Server start");
             while (true){
 

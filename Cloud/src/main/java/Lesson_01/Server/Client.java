@@ -6,6 +6,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.*;
 import java.net.Socket;
+import java.util.Date;
 
 public class Client extends JFrame {
 
@@ -15,7 +16,7 @@ public class Client extends JFrame {
 
     public Client () throws IOException {
 
-        socket = new Socket("localhost", 5678);
+        socket = new Socket("localhost", 5000);
         out = new DataOutputStream(socket.getOutputStream());
         in = new DataInputStream(socket.getInputStream());
 
@@ -70,7 +71,7 @@ public class Client extends JFrame {
             }
 
             if (exists.equals("download")){
-                File file = new File("client" + File.separator + in.readUTF());
+                File file = new File("DIR_JAVA_IO\\client" + File.separator + in.readUTF());
 
                 if (!file.exists()){
                     file.createNewFile();
@@ -82,9 +83,14 @@ public class Client extends JFrame {
 
                 byte[] buffer = new byte[8 * 1024];
 
+                int control = (int) (size / buffer.length);
+                int control1 = (int) (size + (buffer.length - 1)) / (buffer.length);
+                int control2 = (int) (size + (buffer.length)) / (buffer.length);
+
                 for(int i = 0; i < (size + (buffer.length - 1)) / (buffer.length); i++) {
                     int read = in.read(buffer);
                     fos.write(buffer, 0, read);
+                    System.out.printf("%s for time %s\n", i, new Date().toString());
                 }
 
                 fos.close();
@@ -101,7 +107,7 @@ public class Client extends JFrame {
 
     private void sendFile (String fileName) {
         try {
-            File file = new File("client" + File.separator + fileName);
+            File file = new File("DIR_JAVA_IO\\client" + File.separator + fileName);
 
             if (!file.exists()){
                 throw new FileNotFoundException();

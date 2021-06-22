@@ -27,7 +27,7 @@ public class ClientHandler implements Runnable{
                 if ("upload".equals(command)){
 
                     try {
-                        File file = new File("server" + File.separator + in.readUTF());
+                        File file = new File("DIR_JAVA_IO\\server" + File.separator + in.readUTF());
 
                         if (!file.exists()){
                             file.createNewFile();
@@ -57,7 +57,7 @@ public class ClientHandler implements Runnable{
 
                     try {
 
-                        File file = new File("server" + File.separator + in.readUTF());
+                        File file = new File("DIR_JAVA_IO\\server" + File.separator + in.readUTF());
 
                         if (file.exists()){
 
