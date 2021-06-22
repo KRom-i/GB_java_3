@@ -16,7 +16,7 @@ public class Client extends JFrame {
 
     public Client () throws IOException {
 
-        socket = new Socket("localhost", 5000);
+        socket = new Socket("localhost", 6666);
         out = new DataOutputStream(socket.getOutputStream());
         in = new DataInputStream(socket.getInputStream());
 
