@@ -13,9 +13,7 @@ public class Server {
         try (ServerSocket server = new ServerSocket(5000)){
             System.out.println("Server start");
             while (true){
-
                 service.execute(new ClientHandler(server.accept()));
-
             }
 
         }  catch (Exception e){

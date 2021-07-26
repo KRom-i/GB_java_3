@@ -28,7 +28,7 @@ public class IOUtils {
 
         Path pathClientDir = Paths.get(root, "Client");
 
-//        demoNIOWatchService(path3);
+        demoNIOWatchService(path3);
 
 //        Проверка на существование
         System.out.println("File test.txt exist: " + Files.exists(Paths.get(pathClientDir + File.separator, "test.txt")));
@@ -148,4 +148,8 @@ public class IOUtils {
         }).start();
 
     }
+
+
+
+
 }

@@ -27,6 +27,7 @@ public class NettyBaseServer {
                             channel.pipeline().addLast(
                             new ByteBufInputHandler(),
                             new OutputHandler(),
+                            new TestHandler(),
                             new ChatMessageHandler()
                             );
                         }

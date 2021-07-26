@@ -20,12 +20,21 @@ public class ByteBufInputHandler extends ChannelInboundHandlerAdapter {
     @Override
     public void channelRead (ChannelHandlerContext ctx, Object msg) throws Exception {
         ByteBuf buf = (ByteBuf) msg;
-        System.out.println("buf: " + buf);
+
         StringBuilder builder = new StringBuilder();
         while (buf.isReadable()){
             builder.append((char) buf.readByte());
         }
-        ctx.fireChannelRead(builder.toString());
+
+        System.out.println("builder: " + builder.toString());
+        try {
+             ctx.fireChannelRead(222);
+        } catch (Exception e){
+            ctx.fireChannelRead(builder.toString());
+            e.printStackTrace();
+        }
+
+
     }
 
     @Override

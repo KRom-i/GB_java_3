@@ -60,6 +60,7 @@ public class Client extends JFrame {
     }
 
     private void getFile (String fileName) {
+
         try {
             out.writeUTF("download");
             out.writeUTF(fileName);
@@ -106,6 +107,7 @@ public class Client extends JFrame {
     }
 
     private void sendFile (String fileName) {
+
         try {
             File file = new File("DIR_JAVA_IO\\client" + File.separator + fileName);
 
